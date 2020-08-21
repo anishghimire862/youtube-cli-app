@@ -46,13 +46,14 @@ function searchVideo(searchQuery) {
     .then(html => {
       const $ = cheerio.load(html);
       const data = [];
-      $('ytd-video-renderer').each(function() {
+      $('ytd-video-renderer').each(function(index) {
+        let count = index;
         let title = $(this).find('#video-title').attr('title');
         let href = $(this).find('.yt-simple-endpoint.inline-block.style-scope.ytd-thumbnail').attr('href');
         let channelName = $(this).find('.style-scope.ytd-channel-name.complex-string').text();
         let views = $(this).find('#metadata-line span:first-child').text();
         let publishedOn = $(this).find('#metadata-line span:nth-child(2)').text();
-        data.push({title: title, href: href, channelName: channelName, views: views, publishedOn: publishedOn})
+        data.push({count: count+1, title: title, href: href, channelName: channelName, views: views, publishedOn: publishedOn})
       });
 
       console.log(data);
