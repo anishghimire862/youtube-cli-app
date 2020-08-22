@@ -61,9 +61,9 @@ function searchVideo(searchQuery) {
       inquirer.prompt(copyQuestions).then(function(answers) {
         const { exec } = require('child_process');
         let videoUrl = 'https://www.youtube.com' + data[answers.number-1].href 
-        exec('tsp mpv '+ videoUrl, (err, stdout, stderr) => {
-          //console.log(`stdout: ${stdout}`);
-          //console.log(`stderr: ${stderr}`);   
+        exec('mpv '+ videoUrl, (err, stdout, stderr) => {
+          console.log(`stdout: ${stdout}`);
+          console.log(`stderr: ${stderr}`);   
         });
         console.log('The video will start soon on MPV palyer ', data[answers.number-1].title)
 
